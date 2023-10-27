@@ -12,6 +12,11 @@ html, body {
 :root {
   --clr-primary-bg: hsl(0, 0%, 100%);
   --clr-white: hsl(0, 0%, 100%);
+  --clr-terracota: hsl(0, 79%, 55%);
+  --clr-light-terracota: hsl(0, 79%, 68%);
+  --clr-light-gray: hsl(0, 0%, 67%);
+  --clr-medium-gray: hsl(0, 0%, 23%);
+  --clr-dark-gray: hsl(0, 0%, 15%);
 }
 
 .disable-select {
@@ -36,7 +41,7 @@ html, body {
   --size: 200px;
   width: var(--size);
   height: var(--size);
-  background-color: hsl(0, 81%, 68%);
+  background-color: var(--clr-light-terracota);
   color: var(--clr-white);
   border-radius: 5px;
   display: flex;
@@ -58,4 +63,50 @@ html, body {
 .number-display figcaption {
   padding-top: 16px;
   font-size: 1.25rem;
+}
+
+.answer_submission {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.answer_submission input {
+  padding-block: 8px;
+  text-align: center;
+  font-size: 1rem;
+  appearance: none;
+  border: none;
+  color: var(--clr-dark-gray);
+  border-bottom: 2px solid var(--clr-dark-gray);
+  transition: all 350ms ease-in-out;
+}
+
+.answer_submission input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--clr-terracota);
+}
+
+.answer_submission input:focus::placeholder {
+  color: transparent;
+}
+
+.answer_submission button {
+  appearance: none;
+  border: none;
+  font-size: 1.25rem;
+  width: min-content;
+  color: var(--clr-white);
+  border-radius: 5px;
+  padding: 8px 32px;
+  background-color: var(--clr-terracota);
+}
+
+.answer_submission button:active {
+  background-color: var(--clr-light-terracota);
+}
+
+.answer_submission button:disabled {
+  background-color: var(--clr-light-gray)
 }
