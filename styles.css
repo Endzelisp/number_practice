@@ -22,6 +22,9 @@ html, body {
     hsl(0, 0%, 100%) 59%,
     hsl(0, 2%, 89%) 100%
   );
+  --clr-valid-answer: hsl(120, 100%, 70%); 
+  --clr-wrong-answer: hsl(0, 100%, 70%); 
+
 }
 
 .disable-select {
@@ -90,6 +93,16 @@ html, body {
   transition: all 350ms ease-in-out;
 }
 
+.answer_submission input.valid-answer {
+  font-weight: 600;
+  background-color: var(--clr-valid-answer);
+}
+
+.answer_submission input.wrong-answer {
+  font-weight: 600;
+  background-color: var(--clr-wrong-answer);
+}
+
 .answer_submission input:focus {
   outline: none;
   background: var(--gradient-light-gray);
@@ -117,4 +130,12 @@ html, body {
 
 .answer_submission button:disabled {
   background-color: var(--clr-light-gray)
+}
+
+#result-icon {
+  opacity: 0;
+}
+
+#result-icon.icon-visible {
+  opacity: 1;
 }
