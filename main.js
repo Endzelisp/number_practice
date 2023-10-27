@@ -102,4 +102,15 @@ const numbersInLetters = [
   "cien"
 ];
 
-console.log(numbersInLetters);
+const displayedNumber = document.querySelector('.number-display #number');
+const numberInLetter = document.querySelector('.number-display figcaption');
+
+const getRandomNum = function() {
+  return Math.floor(Math.random() * 101)
+}
+
+const randomNum = getRandomNum();
+
+window.addEventListener('DOMContentLoaded', function() {
+  displayedNumber.textContent = randomNum;
+})
