@@ -17,6 +17,11 @@ html, body {
   --clr-light-gray: hsl(0, 0%, 67%);
   --clr-medium-gray: hsl(0, 0%, 23%);
   --clr-dark-gray: hsl(0, 0%, 15%);
+  --gradient-light-gray: radial-gradient(
+    circle,
+    hsl(0, 0%, 100%) 59%,
+    hsl(0, 2%, 89%) 100%
+  );
 }
 
 .disable-select {
@@ -78,13 +83,16 @@ html, body {
   font-size: 1rem;
   appearance: none;
   border: none;
+  border-radius: 3px 3px 0px 0px;
   color: var(--clr-dark-gray);
+  background-color: var(--clr-white);
   border-bottom: 2px solid var(--clr-dark-gray);
   transition: all 350ms ease-in-out;
 }
 
 .answer_submission input:focus {
   outline: none;
+  background: var(--gradient-light-gray);
   border-bottom: 2px solid var(--clr-terracota);
 }
 
