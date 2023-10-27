@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+:root {
+  --clr-primary-bg: hsl(0, 0%, 100%);
+  --clr-white: hsl(0, 0%, 100%);
+}
+
+.disable-select {
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
+
+.main_container {
+  height: 100%;
+  min-height: 100%;
+  background-color: var(--clr-primary-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}
+
+.number-display {
+  --size: 200px;
+  width: var(--size);
+  height: var(--size);
+  background-color: hsl(0, 81%, 68%);
+  color: var(--clr-white);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+  3.6px 2.7px 2.7px rgba(0, 0, 0, 0.022),
+  9.2px 6.9px 6.9px rgba(0, 0, 0, 0.031),
+  18.8px 14px 14.2px rgba(0, 0, 0, 0.039),
+  38.7px 28.8px 29.2px rgba(0, 0, 0, 0.048),
+  106px 79px 80px rgba(0, 0, 0, 0.07);
+}
+
+.number-display span {
+  font-size: 3rem;
+}
+
+.number-display figcaption {
+  padding-top: 16px;
+  font-size: 1.25rem;
+}
