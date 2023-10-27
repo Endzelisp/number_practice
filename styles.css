@@ -116,7 +116,7 @@ html, body {
   appearance: none;
   border: none;
   font-size: 1.25rem;
-  width: min-content;
+  white-space: nowrap;
   color: var(--clr-white);
   border-radius: 5px;
   padding: 8px 32px;
@@ -136,5 +136,6 @@ html, body {
 }
 
 #result-icon.icon-visible {
+  padding: 16px 0;
   opacity: 1;
 }
