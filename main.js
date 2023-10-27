@@ -123,15 +123,24 @@ window.addEventListener('DOMContentLoaded', function() {
   displayedNumber.textContent = randomNum;
 })
 
+const rightAnswerEmoji = ['fire', 'party', 'target'];
+const wrongAnswerEmoji = ['no', 'thumbs-down']
+
+const getRandomEmoji = function(arr) {
+  const length = arr.length;
+  const selected = Math.floor(Math.random() * length);
+  return `./assets/${arr[selected]}.gif`
+}
+
 const runValidResult = function() {
   inputUserAnswer.classList.remove('wrong-answer');
   inputUserAnswer.classList.add('valid-answer');
-  resultIcon.src = `./assets/party.gif`;
+  resultIcon.src = getRandomEmoji(rightAnswerEmoji);
 }
 
 const runInvalidResult = function() {
   inputUserAnswer.classList.add('wrong-answer');
-  resultIcon.src = `./assets/no.gif`
+  resultIcon.src = getRandomEmoji(wrongAnswerEmoji);
 }
 
 validationBtn.addEventListener('pointerdown', function() {
