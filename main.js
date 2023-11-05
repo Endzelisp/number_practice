@@ -102,9 +102,6 @@ const numbersInLetters = [
   "cien"
 ];
 
-let isFinished = false;
-let randomNum;
-
 const displayedNumber = document.querySelector('.number-display #number');
 const numberInLetter = document.querySelector('.number-display figcaption');
 const inputUserAnswer = document.querySelector('.answer_submission input');
@@ -114,13 +111,19 @@ const resultIcon = document.querySelector('.answer_submission #result-icon');
 validationBtn.textContent = 'Verificar';
 
 const getRandomNum = function() {
-  return Math.floor(Math.random() * 101)
+  return Math.floor(1 + Math.random() * 10)
 }
 
-randomNum = getRandomNum();
+let firstNum;
+let secondNum;
+let result;
+
+firstNum = getRandomNum();
+secondNum = getRandomNum();
+result = firstNum * secondNum;
 
 window.addEventListener('DOMContentLoaded', function() {
-  displayedNumber.textContent = randomNum;
+  displayedNumber.textContent = `${firstNum} X ${secondNum}`;
 })
 
 const rightAnswerEmoji = ['fire', 'party', 'target'];
@@ -143,10 +146,14 @@ const runInvalidResult = function() {
   resultIcon.src = getRandomEmoji(wrongAnswerEmoji);
 }
 
+// isFinished describe when the answer is right to then
+// allow start again
+let isFinished = false;
+
 validationBtn.addEventListener('pointerdown', function() {
   if (!isFinished) {
     const userAnswer = inputUserAnswer.value.trim().toLowerCase();
-    const validAnswer = numbersInLetters[randomNum];
+    const validAnswer = numbersInLetters[result];
     numberInLetter.textContent = validAnswer;
     if (userAnswer === validAnswer) {
       runValidResult()
@@ -159,8 +166,11 @@ validationBtn.addEventListener('pointerdown', function() {
     resultIcon.classList.add('icon-visible')
     return
   } else if (isFinished) {
-      randomNum = getRandomNum();
-      displayedNumber.textContent = randomNum;
+      firstNum = getRandomNum();
+      secondNum = getRandomNum();
+      result = firstNum * secondNum;
+      displayedNumber.textContent = `${firstNum} X ${secondNum}`;
+
       validationBtn.textContent = 'Verificar';
       numberInLetter.textContent = '';
       inputUserAnswer.value = '';
