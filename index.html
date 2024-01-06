@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Practica los números en Español</title>
+  <title></title>
   <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="./styles.css">
   <script type="module" src="./main.js"></script>
@@ -16,11 +16,27 @@
     </figure>
     <form action="#" class="answer_submission">
       <label for="answer">
-        <input type="text" placeholder="Respuesta" id="answer" autocomplete="off">
+        <input type="text" placeholder="" id="answer" autocomplete="off">
       </label>
       <img src="" alt="result icon" width="80" id="result-icon">
       <button type="button"></button>
     </form>
   </main>
+  <dialog class="language-modal">
+    <form>
+      <button value="es" formmethod="dialog">
+        <img src="./assets/spain.png" alt="Spain flag">
+        Español
+      </button>
+      <button value="en" formmethod="dialog">
+        <img src="./assets/union-jack.png" alt="United Kingdom flag">
+        English
+      </button>
+      <button value="ru" formmethod="dialog">
+        <img src="./assets/russia.png" alt="Russian flag">
+        Русский
+      </button>
+    </form>
+  </dialog>
 </body>
 </html>

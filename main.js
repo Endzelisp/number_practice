@@ -1,106 +1,46 @@
-const numbersInLetters = [
-  "cero",
-  "uno",
-  "dos",
-  "tres",
-  "cuatro",
-  "cinco",
-  "seis",
-  "siete",
-  "ocho",
-  "nueve",
-  "diez",
-  "once",
-  "doce",
-  "trece",
-  "catorce",
-  "quince",
-  "dieciséis",
-  "diecisiete",
-  "dieciocho",
-  "diecinueve",
-  "veinte",
-  "veintiuno",
-  "veintidós",
-  "veintitrés",
-  "veinticuatro",
-  "veinticinco",
-  "veintiséis",
-  "veintisiete",
-  "veintiocho",
-  "veintinueve",
-  "treinta",
-  "treinta y uno",
-  "treinta y dos",
-  "treinta y tres",
-  "treinta y cuatro",
-  "treinta y cinco",
-  "treinta y seis",
-  "treinta y siete",
-  "treinta y ocho",
-  "treinta y nueve",
-  "cuarenta",
-  "cuarenta y uno",
-  "cuarenta y dos",
-  "cuarenta y tres",
-  "cuarenta y cuatro",
-  "cuarenta y cinco",
-  "cuarenta y seis",
-  "cuarenta y siete",
-  "cuarenta y ocho",
-  "cuarenta y nueve",
-  "cincuenta",
-  "cincuenta y uno",
-  "cincuenta y dos",
-  "cincuenta y tres",
-  "cincuenta y cuatro",
-  "cincuenta y cinco",
-  "cincuenta y seis",
-  "cincuenta y siete",
-  "cincuenta y ocho",
-  "cincuenta y nueve",
-  "sesenta",
-  "sesenta y uno",
-  "sesenta y dos",
-  "sesenta y tres",
-  "sesenta y cuatro",
-  "sesenta y cinco",
-  "sesenta y seis",
-  "sesenta y siete",
-  "sesenta y ocho",
-  "sesenta y nueve",
-  "setenta",
-  "setenta y uno",
-  "setenta y dos",
-  "setenta y tres",
-  "setenta y cuatro",
-  "setenta y cinco",
-  "setenta y seis",
-  "setenta y siete",
-  "setenta y ocho",
-  "setenta y nueve",
-  "ochenta",
-  "ochenta y uno",
-  "ochenta y dos",
-  "ochenta y tres",
-  "ochenta y cuatro",
-  "ochenta y cinco",
-  "ochenta y seis",
-  "ochenta y siete",
-  "ochenta y ocho",
-  "ochenta y nueve",
-  "noventa",
-  "noventa y uno",
-  "noventa y dos",
-  "noventa y tres",
-  "noventa y cuatro",
-  "noventa y cinco",
-  "noventa y seis",
-  "noventa y siete",
-  "noventa y ocho",
-  "noventa y nueve",
-  "cien"
-];
+import {numbersInSpanish} from "./num_spanish.js";
+import { numbersInEnglish } from "./num_english.js";
+import { numbersInRussian } from "./num_russian.js";
+
+/*
+
+  Open the modal to select the language
+
+*/
+const modal = document.querySelector('.language-modal');
+modal.showModal();
+
+let language = '';
+
+const PAGE_TITLE = {
+  es: 'Números en Español',
+  en: 'Numbers in English',
+  ru: 'Цифры на русском языке',
+}
+
+const head = document.querySelector('head');
+const title = Array.from(head.children).filter(items => items.tagName === 'TITLE');
+title[0].textContent = 'Practice the numbers';
+
+const NUMBERS = {
+  es: numbersInSpanish,
+  en: numbersInEnglish,
+  ru: numbersInRussian, 
+}
+
+const VALIDATION_BUTTON_TEXT = {
+  es: 'Verificar',
+  en: 'Verify',
+  ru: 'Проверять', 
+}
+
+const INPUT_PLACEHOLDER = {
+  es: 'Respuesta',
+  en: 'Answer',
+  ru: 'отвечать', 
+}
+
+let numbersInLetters;
 
 const displayedNumber = document.querySelector('.number-display #number');
 const numberInLetter = document.querySelector('.number-display figcaption');
@@ -108,22 +48,22 @@ const inputUserAnswer = document.querySelector('.answer_submission input');
 const validationBtn = document.querySelector('.answer_submission button');
 const resultIcon = document.querySelector('.answer_submission #result-icon');
 
-validationBtn.textContent = 'Verificar';
+modal.addEventListener('close', () => {
+  language = modal.returnValue;
+  numbersInLetters = NUMBERS[language];
+  title[0].textContent = PAGE_TITLE[language];
+  validationBtn.textContent = VALIDATION_BUTTON_TEXT[language];
+  inputUserAnswer.setAttribute('placeholder', INPUT_PLACEHOLDER[language])
+})
 
 const getRandomNum = function() {
-  return Math.floor(1 + Math.random() * 10)
+  return Math.floor(Math.random() * 100)
 }
 
-let firstNum;
-let secondNum;
-let result;
-
-firstNum = getRandomNum();
-secondNum = getRandomNum();
-result = firstNum * secondNum;
+let randomNum = getRandomNum();
 
 window.addEventListener('DOMContentLoaded', function() {
-  displayedNumber.textContent = `${firstNum} X ${secondNum}`;
+  displayedNumber.textContent = randomNum;
 })
 
 const rightAnswerEmoji = ['fire', 'party', 'target'];
@@ -153,7 +93,7 @@ let isFinished = false;
 validationBtn.addEventListener('pointerdown', function() {
   if (!isFinished) {
     const userAnswer = inputUserAnswer.value.trim().toLowerCase();
-    const validAnswer = numbersInLetters[result];
+    const validAnswer = numbersInLetters[randomNum];
     numberInLetter.textContent = validAnswer;
     if (userAnswer === validAnswer) {
       runValidResult()
@@ -166,10 +106,8 @@ validationBtn.addEventListener('pointerdown', function() {
     resultIcon.classList.add('icon-visible')
     return
   } else if (isFinished) {
-      firstNum = getRandomNum();
-      secondNum = getRandomNum();
-      result = firstNum * secondNum;
-      displayedNumber.textContent = `${firstNum} X ${secondNum}`;
+      randomNum = getRandomNum();
+      displayedNumber.textContent = randomNum;
 
       validationBtn.textContent = 'Verificar';
       numberInLetter.textContent = '';
