@@ -20,7 +20,7 @@ const PAGE_TITLE = {
 
 const head = document.querySelector('head');
 const title = Array.from(head.children).filter(items => items.tagName === 'TITLE');
-title[0].textContent = PAGE_TITLE.en;
+title[0].textContent = 'Practice the numbers';
 
 const NUMBERS = {
   es: numbersInSpanish,
@@ -28,13 +28,19 @@ const NUMBERS = {
   ru: numbersInRussian, 
 }
 
-let numbersInLetters;
+const VALIDATION_BUTTON_TEXT = {
+  es: 'Verificar',
+  en: 'Verify',
+  ru: 'Проверять', 
+}
 
-modal.addEventListener('close', () => {
-  language = modal.returnValue;
-  numbersInLetters = NUMBERS[language];
-  title[0].textContent = PAGE_TITLE[language];
-})
+const INPUT_PLACEHOLDER = {
+  es: 'Respuesta',
+  en: 'Answer',
+  ru: 'отвечать', 
+}
+
+let numbersInLetters;
 
 const displayedNumber = document.querySelector('.number-display #number');
 const numberInLetter = document.querySelector('.number-display figcaption');
@@ -42,7 +48,13 @@ const inputUserAnswer = document.querySelector('.answer_submission input');
 const validationBtn = document.querySelector('.answer_submission button');
 const resultIcon = document.querySelector('.answer_submission #result-icon');
 
-validationBtn.textContent = 'Verificar';
+modal.addEventListener('close', () => {
+  language = modal.returnValue;
+  numbersInLetters = NUMBERS[language];
+  title[0].textContent = PAGE_TITLE[language];
+  validationBtn.textContent = VALIDATION_BUTTON_TEXT[language];
+  inputUserAnswer.setAttribute('placeholder', INPUT_PLACEHOLDER[language])
+})
 
 const getRandomNum = function() {
   return Math.floor(Math.random() * 100)
