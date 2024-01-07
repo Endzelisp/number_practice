@@ -67,48 +67,6 @@ dialog.language-modal button {
   background-color: var(--clr-primary-bg);
 }
 
-aside.settings-wrapper {
-  --aside-width: clamp(150px, 50vw, 600px);
-  background-color: hsla(0, 0%, 62%, 0.3);
-  backdrop-filter: blur(5px);
-  border-radius: 0 5px 0 0;
-  height: 100%;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  width: var(--aside-width);
-  margin-left: calc(-1 * var(--aside-width));
-  transition: margin-left 500ms ease;
-}
-
-.settings-wrapper button#settings-button {
-  align-self: end;
-  --btn-width: clamp(24px, 2.5vw, 30px);
-  position: relative;
-  width: var(--btn-width);
-  height: auto;
-  right: calc(-1 * var(--btn-width) - 12px);
-}
-
-.settings-wrapper img#settings-icon {
-  width: inherit;
-}
-
-.settings-wrapper button {
-  appearance: none;
-  border: none;
-  background-color: transparent;
-}
-
-nav.settings-menu li {
-  list-style-type: none;
-  margin: 16px;
-}
-
-nav.settings-menu button {
-  font-size: 1.125rem;
-}
-
 .app-wrapper {
   display: flex;
   flex-direction: column;
