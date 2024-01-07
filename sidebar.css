@@ -35,3 +35,14 @@ nav.settings-menu li {
   list-style-type: none;
   margin: 16px;
 }
+
+nav.settings-menu button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.125rem;
+}
+
+nav.settings-menu img {
+  width: clamp(30px, 5vw, 60px);
+}
