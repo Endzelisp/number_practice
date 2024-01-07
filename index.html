@@ -7,12 +7,13 @@
   <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="./styles.css">
   <script type="module" src="./main.js"></script>
+  <script type="module" src="./sidebar-menu.js"></script>
 </head>
 <body>
   <main class="main_container">
-    <div class="settings-wrapper">
+    <aside class="settings-wrapper">
       <button type="button" id="settings-button">
-        <img src="./assets/setting.png" id="settings-icon" alt="settings">
+        <img src="./assets/open_menu.png" id="settings-icon" alt="settings">
       </button>
       <nav class="settings-menu" id="settings-menu">
         <ul>
@@ -27,7 +28,7 @@
           </li>
         </ul>
       </nav>
-    </div>
+    </aside>
     <div class="app-wrapper">
       <figure class="number-display">
         <span class="disable-select" id="number"></span>
