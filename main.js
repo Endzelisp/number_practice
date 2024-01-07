@@ -1,6 +1,7 @@
 import {numbersInSpanish} from "./num_spanish.js";
 import { numbersInEnglish } from "./num_english.js";
 import { numbersInRussian } from "./num_russian.js";
+import "./sidebar-menu.js"
 
 /*
 
