@@ -1,7 +1,36 @@
+import { initialModal } from "./global.js";
+import { state } from "./global.js";
+import { NUMBERS } from "./global.js";
+import { PAGE_TITLE } from "./global.js";
+import { VALIDATION_BUTTON_TEXT } from "./global.js";
+import { INPUT_PLACEHOLDER } from "./global.js";
+import { validationBtn } from "./global.js";
+import { title } from "./global.js";
+import { inputUserAnswer } from "./global.js";
+
 const settingsWrapper = document.querySelector('.settings-wrapper');
 const settingsBtn = document.querySelector('#settings-button');
 const settingsBtnIcon = settingsBtn.querySelector('img');
+const sideBarMenu = settingsWrapper.querySelector('nav.settings-menu');
 let isMenuOpen = false;
+
+/*
+
+  Open the modal to select the language
+
+*/
+
+initialModal.showModal();
+
+initialModal.addEventListener('close', () => {
+  state.language = initialModal.returnValue;
+  state.numbersInLetters = NUMBERS[state.language];
+  title[0].textContent = PAGE_TITLE[state.language];
+  validationBtn.textContent = VALIDATION_BUTTON_TEXT[state.language];
+  inputUserAnswer.setAttribute('placeholder', INPUT_PLACEHOLDER[state.language])
+})
+
+title[0].textContent = 'Practice the numbers';
 
 settingsBtn.addEventListener('click', function() {
   if (!isMenuOpen) {
@@ -14,4 +43,9 @@ settingsBtn.addEventListener('click', function() {
   isMenuOpen = false;
   settingsBtnIcon.setAttribute('src', `./assets/open_menu.png`);
   return;
+})
+
+sideBarMenu.addEventListener('click', function(e) {
+  const langButton = e.target.closest('button[data-lang]');
+  console.log(langButton.dataset.lang)
 })
