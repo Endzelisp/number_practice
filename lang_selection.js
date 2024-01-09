@@ -7,6 +7,7 @@ import { INPUT_PLACEHOLDER } from "./global.js";
 import { validationBtn } from "./global.js";
 import { title } from "./global.js";
 import { inputUserAnswer } from "./global.js";
+import { resetDisplayedNumb } from "./main.js";
 
 const settingsWrapper = document.querySelector('.settings-wrapper');
 const settingsBtn = document.querySelector('#settings-button');
@@ -52,4 +53,5 @@ settingsBtn.addEventListener('click', function() {
 sideBarMenu.addEventListener('click', function(e) {
   const langButton = e.target.closest('button[data-lang]');
   languageSelection(langButton.dataset.lang)
+  resetDisplayedNumb()
 })
