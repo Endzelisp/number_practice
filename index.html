@@ -6,21 +6,51 @@
   <title></title>
   <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./sidebar.css">
   <script type="module" src="./main.js"></script>
 </head>
 <body>
   <main class="main_container">
-    <figure class="number-display">
-      <span class="disable-select" id="number"></span>
-      <figcaption></figcaption>
-    </figure>
-    <form action="#" class="answer_submission">
-      <label for="answer">
-        <input type="text" placeholder="" id="answer" autocomplete="off">
-      </label>
-      <img src="" alt="result icon" width="80" id="result-icon">
-      <button type="button"></button>
-    </form>
+    <aside class="settings-wrapper">
+      <button type="button" id="settings-button">
+        <img src="./assets/open_menu.png" id="settings-icon" alt="settings">
+      </button>
+      <nav class="settings-menu" id="settings-menu">
+        <ul>
+          <li>
+            <button type="button" data-lang="es">
+              <img src="./assets/spain.png" alt="Spain flag">
+              <span>Español</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" data-lang="en">
+              <img src="./assets/union-jack.png" alt="United Kingdom flag">
+              <span>English</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" data-lang="ru">
+              <img src="./assets/russia.png" alt="Russian flag">
+              <span>Русский</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <div class="app-wrapper">
+      <figure class="number-display">
+        <span class="disable-select" id="number"></span>
+        <figcaption></figcaption>
+      </figure>
+      <form action="#" class="answer_submission">
+        <label for="answer">
+          <input type="text" placeholder="" id="answer" autocomplete="off">
+        </label>
+        <img src="" alt="result icon" width="80" id="result-icon">
+        <button type="button"></button>
+      </form>
+    </div>
   </main>
   <dialog class="language-modal">
     <form>

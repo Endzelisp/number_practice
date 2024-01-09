@@ -1,60 +1,12 @@
-import {numbersInSpanish} from "./num_spanish.js";
-import { numbersInEnglish } from "./num_english.js";
-import { numbersInRussian } from "./num_russian.js";
-
-/*
-
-  Open the modal to select the language
-
-*/
-const modal = document.querySelector('.language-modal');
-modal.showModal();
-
-let language = '';
-
-const PAGE_TITLE = {
-  es: 'Números en Español',
-  en: 'Numbers in English',
-  ru: 'Цифры на русском языке',
-}
-
-const head = document.querySelector('head');
-const title = Array.from(head.children).filter(items => items.tagName === 'TITLE');
-title[0].textContent = 'Practice the numbers';
-
-const NUMBERS = {
-  es: numbersInSpanish,
-  en: numbersInEnglish,
-  ru: numbersInRussian, 
-}
-
-const VALIDATION_BUTTON_TEXT = {
-  es: 'Verificar',
-  en: 'Verify',
-  ru: 'Проверять', 
-}
-
-const INPUT_PLACEHOLDER = {
-  es: 'Respuesta',
-  en: 'Answer',
-  ru: 'отвечать', 
-}
-
-let numbersInLetters;
+import "./lang_selection.js"
+import { VALIDATION_BUTTON_TEXT, state } from "./global.js";
+import { validationBtn } from "./global.js";
+import { inputUserAnswer } from "./global.js";
+import { TRY_AGAIN_MSG } from "./global.js";
 
 const displayedNumber = document.querySelector('.number-display #number');
 const numberInLetter = document.querySelector('.number-display figcaption');
-const inputUserAnswer = document.querySelector('.answer_submission input');
-const validationBtn = document.querySelector('.answer_submission button');
 const resultIcon = document.querySelector('.answer_submission #result-icon');
-
-modal.addEventListener('close', () => {
-  language = modal.returnValue;
-  numbersInLetters = NUMBERS[language];
-  title[0].textContent = PAGE_TITLE[language];
-  validationBtn.textContent = VALIDATION_BUTTON_TEXT[language];
-  inputUserAnswer.setAttribute('placeholder', INPUT_PLACEHOLDER[language])
-})
 
 const getRandomNum = function() {
   return Math.floor(Math.random() * 100)
@@ -90,15 +42,35 @@ const runInvalidResult = function() {
 // allow start again
 let isFinished = false;
 
+
+/*
+
+  resetDisplayedNumb function is exported exclusively to be used
+  on the lang_selection.js file to reset the displayed number
+  when the user changes the language during the use of the app
+
+*/
+export const resetDisplayedNumb = function() {
+  randomNum = getRandomNum();
+  displayedNumber.textContent = randomNum;
+  validationBtn.textContent = VALIDATION_BUTTON_TEXT[state.language];
+  numberInLetter.textContent = '';
+  inputUserAnswer.value = '';
+  inputUserAnswer.classList.remove('wrong-answer');
+  inputUserAnswer.classList.remove('valid-answer');
+  resultIcon.classList.remove('icon-visible')
+  isFinished = false;
+}
+
 validationBtn.addEventListener('pointerdown', function() {
   if (!isFinished) {
     const userAnswer = inputUserAnswer.value.trim().toLowerCase();
-    const validAnswer = numbersInLetters[randomNum];
+    const validAnswer = state.numbersInLetters[randomNum];
     numberInLetter.textContent = validAnswer;
     if (userAnswer === validAnswer) {
       runValidResult()
       isFinished = true;
-      this.textContent = 'otra vez'
+      this.textContent = TRY_AGAIN_MSG[state.language]
     } else {
       runInvalidResult()
     }
@@ -106,15 +78,6 @@ validationBtn.addEventListener('pointerdown', function() {
     resultIcon.classList.add('icon-visible')
     return
   } else if (isFinished) {
-      randomNum = getRandomNum();
-      displayedNumber.textContent = randomNum;
-
-      validationBtn.textContent = 'Verificar';
-      numberInLetter.textContent = '';
-      inputUserAnswer.value = '';
-      inputUserAnswer.classList.remove('wrong-answer');
-      inputUserAnswer.classList.remove('valid-answer');
-      resultIcon.classList.remove('icon-visible')
-      isFinished = false;
+    resetDisplayedNumb()
   }
 })
