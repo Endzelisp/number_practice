@@ -42,6 +42,26 @@ const runInvalidResult = function() {
 // allow start again
 let isFinished = false;
 
+
+/*
+
+  resetDisplayedNumb function is exported exclusively to be used
+  on the lang_selection.js file to reset the displayed number
+  when the user changes the language during the use of the app
+
+*/
+export const resetDisplayedNumb = function() {
+  randomNum = getRandomNum();
+  displayedNumber.textContent = randomNum;
+  validationBtn.textContent = VALIDATION_BUTTON_TEXT[state.language];
+  numberInLetter.textContent = '';
+  inputUserAnswer.value = '';
+  inputUserAnswer.classList.remove('wrong-answer');
+  inputUserAnswer.classList.remove('valid-answer');
+  resultIcon.classList.remove('icon-visible')
+  isFinished = false;
+}
+
 validationBtn.addEventListener('pointerdown', function() {
   if (!isFinished) {
     const userAnswer = inputUserAnswer.value.trim().toLowerCase();
@@ -58,15 +78,6 @@ validationBtn.addEventListener('pointerdown', function() {
     resultIcon.classList.add('icon-visible')
     return
   } else if (isFinished) {
-      randomNum = getRandomNum();
-      displayedNumber.textContent = randomNum;
-
-      validationBtn.textContent = VALIDATION_BUTTON_TEXT[state.language];
-      numberInLetter.textContent = '';
-      inputUserAnswer.value = '';
-      inputUserAnswer.classList.remove('wrong-answer');
-      inputUserAnswer.classList.remove('valid-answer');
-      resultIcon.classList.remove('icon-visible')
-      isFinished = false;
+    resetDisplayedNumb()
   }
 })
