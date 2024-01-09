@@ -22,12 +22,16 @@ let isMenuOpen = false;
 
 initialModal.showModal();
 
-initialModal.addEventListener('close', () => {
-  state.language = initialModal.returnValue;
+const languageSelection = function(lang) {
+  state.language = lang;
   state.numbersInLetters = NUMBERS[state.language];
   title[0].textContent = PAGE_TITLE[state.language];
   validationBtn.textContent = VALIDATION_BUTTON_TEXT[state.language];
   inputUserAnswer.setAttribute('placeholder', INPUT_PLACEHOLDER[state.language])
+}
+
+initialModal.addEventListener('close', () => {
+  languageSelection(initialModal.returnValue);
 })
 
 title[0].textContent = 'Practice the numbers';
@@ -47,5 +51,5 @@ settingsBtn.addEventListener('click', function() {
 
 sideBarMenu.addEventListener('click', function(e) {
   const langButton = e.target.closest('button[data-lang]');
-  console.log(langButton.dataset.lang)
+  languageSelection(langButton.dataset.lang)
 })
